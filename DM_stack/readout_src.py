@@ -5,7 +5,7 @@ import sys
 import numpy as np
 import pyfits
 
-if len(sys.argv) != 3:
+if len(sys.argv) != 2:
     print >>sys.stderr, "Usage: python readout_src.py {source_fits_file} > {catalog_file}"
     exit(1);
 srcfits = sys.argv[1]
