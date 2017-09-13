@@ -8,7 +8,7 @@ from astropy.io import fits
 
 
 if len(sys.argv) != 2:
-    print >>sys.stderr, "Usage: python readout_src.py {source_fits_file} > {catalog_file}"
+    print >>sys.stderr, "Usage: python readout_src_2.0.py {source_fits_file} > {catalog_file}"
     exit(1);
 srcfits = sys.argv[1]
 
