@@ -198,12 +198,14 @@ colum_names = (
 
 #print '#' + ' '.join(flags) + ' '.join(cols)
 # Print all flag names and column names at the beginning
+"""
 print '#',
 for i in xrange(len(header_table['TFLAG*'])):
     print ''.join(header_table['TFLAG*'][i]),
 for i in xrange(len(header_table['TTYPE*'])):
     print ''.join(header_table['TTYPE*'][i]),
 print ''
+"""
 
 newcols = cols.names
 newcols.remove('flags')
