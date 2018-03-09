@@ -14,7 +14,9 @@ wdir="/Users/rliu/Downloads/test/"  #working directory where the files are
 src_fits="SRC-806305-10.fits"      #output src fits file from DMstack
 ########################################################################
 
+echo "You are processing the src catalog: "
 echo ${wdir}${src_fits}
+echo " "
 
 filename=${src_fits%.*}            #extract the filename without extension
 src_cat=${filename}.fcat           #fiat catalog file to save the data
@@ -24,10 +26,12 @@ r_inner=300                        #inner radius for fiatmap
 r_outer=20000                      #outer radius for fiatmap
 fmap=${filename}fmap.fits          #the output fiatmap file
 
+echo "Converting the src fits file to fiat catalog..."
 # Generate the ASCII catalog with fiat headers
 python print_fiat_header.py ${wdir}${src_fits} > ${wdir}${src_cat}
 python readout_src_2.0.py ${wdir}${src_fits} >> ${wdir}${src_cat}
 
+echo "Filtering the fiat catalog..."
 # Filter the catalog
 fiatfilter "base_GaussianFlux_flux > 500 &&\
 base_GaussianFlux_flux < 4000000 &&\
@@ -52,5 +56,6 @@ sed -i -e 's/ext_shapeHSM_HsmSourceMoments_y/y/g' ${wdir}${filtered_cat}
 # sed "-i" "" "-e" 's/ext_shapeHSM_HsmSourceMoments_x/x/g' ${wdir}${filtered_cat}
 # sed "-i" "" "-e" 's/ext_shapeHSM_HsmSourceMoments_y/y/g' ${wdir}${filtered_cat}
 
+echo "Generating fiat map..."
 # Generate the kappa map
 fiatmap ${wdir}${filtered_cat} ${r_inner} ${r_outer} ${wdir}${fmap}
