@@ -32,7 +32,7 @@ python print_fiat_header.py ${wdir}${src_fits} > ${wdir}${src_cat}
 python readout_src_2.0.py ${wdir}${src_fits} >> ${wdir}${src_cat}
 
 echo "Filtering the fiat catalog..."
-# Filter the catalog
+# Filter the catalog. These parameters are tested with CFHT data. MODIFY them according to your image!
 fiatfilter "base_GaussianFlux_flux > 500 &&\
 base_GaussianFlux_flux < 4000000 &&\
 calib_psfUsed < 0.5 &&\
