@@ -1,12 +1,12 @@
 #!/bin/bash
 #Author:R.B.Liu
 ########################################################################
-#Notes:
-#This script is used to generate fiatmap from a given src fits table.
-#1. Make sure you have print_fiat_header.py and readout_src_2.0.py under the same directory with this script.
-#2. It also needs numpy, astropy and pyfits -- they are included in DMstack.
-#3. Make sure fiat tools (eg. fiatfilter, fiatmap) are already installed.
-#4. Modify wdir and src_fits by yourself, as well as the parameters in fiatfilter& fiatmap.
+# Notes:
+# This script is used to generate fiatmap from a given src fits table.
+# 1. Make sure you have print_fiat_header.py and readout_src_2.0.py under the same directory with this script.
+# 2. It also needs numpy, astropy and pyfits -- they are included in DMstack.
+# 3. Make sure fiat tools (eg. fiatfilter, fiatmap) are already installed.
+# 4. Modify wdir and src_fits by yourself, as well as the parameters in fiatfilter& fiatmap.
 ########################################################################
 
 # Set the filenames
@@ -24,7 +24,7 @@ r_inner=300                        #inner radius for fiatmap
 r_outer=20000                      #outer radius for fiatmap
 fmap=${filename}fmap.fits          #the output fiatmap file
 
-# Generate the ASCI catalog with fiat headers
+# Generate the ASCII catalog with fiat headers
 python print_fiat_header.py ${wdir}${src_fits} > ${wdir}${src_cat}
 python readout_src_2.0.py ${wdir}${src_fits} >> ${wdir}${src_cat}
 
