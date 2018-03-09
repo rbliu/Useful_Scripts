@@ -59,3 +59,6 @@ sed -i -e 's/ext_shapeHSM_HsmSourceMoments_y/y/g' ${wdir}${filtered_cat}
 echo "Generating fiat map..."
 # Generate the kappa map
 fiatmap ${wdir}${filtered_cat} ${r_inner} ${r_outer} ${wdir}${fmap}
+
+echo "Done! fiatmap saved at"
+echo ${wdir}${fmap}
