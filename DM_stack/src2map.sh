@@ -9,12 +9,12 @@
 # 4. Modify wdir and src_fits by yourself, as well as the parameters in fiatfilter& fiatmap.
 ########################################################################
 
-# Set the filenames
+# Set the filenames. Modify wdir and src_fits by yourself!
 wdir="/Users/rliu/Downloads/test/"  #working directory where the files are
 src_fits="SRC-806305-10.fits"      #output src fits file from DMstack
+########################################################################
 
 echo ${wdir}${src_fits}
-echo ${wdir}${src_cat}
 
 filename=${src_fits%.*}            #extract the filename without extension
 src_cat=${filename}.fcat           #fiat catalog file to save the data
@@ -37,13 +37,20 @@ base_PixelFlags_flag_interpolatedCenter < 0.5 &&\
 (ext_shapeHSM_HsmShapeRegauss_e1)**2 + (ext_shapeHSM_HsmShapeRegauss_e2)**2 < 1.5 &&\
 base_SdssShape_xx + base_SdssShape_yy < 200 &&\
 base_SdssShape_xx > 1 &&\
-base_SdssShape_yy > 1" ${wdir}${src_cat} > ${filtered_cat}
+base_SdssShape_yy > 1" ${wdir}${src_cat} > ${wdir}${filtered_cat}
 
-sed "-i" "" "-e" 's/ext_shapeHSM_HsmSourceMoments_xx/ixx/g' ${filtered_cat}
-sed "-i" "" "-e" 's/ext_shapeHSM_HsmSourceMoments_yy/iyy/g' ${filtered_cat}
-sed "-i" "" "-e" 's/ext_shapeHSM_HsmSourceMoments_xy/ixy/g' ${filtered_cat}
-sed "-i" "" "-e" 's/ext_shapeHSM_HsmSourceMoments_x/x/g' ${filtered_cat}
-sed "-i" "" "-e" 's/ext_shapeHSM_HsmSourceMoments_y/y/g' ${filtered_cat}
+# Modify the fiat header to match fiatmap requirement
+sed -i -e 's/ext_shapeHSM_HsmSourceMoments_xx/ixx/g' ${wdir}${filtered_cat}
+sed -i -e 's/ext_shapeHSM_HsmSourceMoments_yy/iyy/g' ${wdir}${filtered_cat}
+sed -i -e 's/ext_shapeHSM_HsmSourceMoments_xy/ixy/g' ${wdir}${filtered_cat}
+sed -i -e 's/ext_shapeHSM_HsmSourceMoments_x/x/g' ${wdir}${filtered_cat}
+sed -i -e 's/ext_shapeHSM_HsmSourceMoments_y/y/g' ${wdir}${filtered_cat}
+# If you are using macOS, use the following 5 lines instead of the above lines
+# sed "-i" "" "-e" 's/ext_shapeHSM_HsmSourceMoments_xx/ixx/g' ${wdir}${filtered_cat}
+# sed "-i" "" "-e" 's/ext_shapeHSM_HsmSourceMoments_yy/iyy/g' ${wdir}${filtered_cat}
+# sed "-i" "" "-e" 's/ext_shapeHSM_HsmSourceMoments_xy/ixy/g' ${wdir}${filtered_cat}
+# sed "-i" "" "-e" 's/ext_shapeHSM_HsmSourceMoments_x/x/g' ${wdir}${filtered_cat}
+# sed "-i" "" "-e" 's/ext_shapeHSM_HsmSourceMoments_y/y/g' ${wdir}${filtered_cat}
 
 # Generate the kappa map
-fiatmap ${filtered_cat} ${r_inner} ${r_outer} ${fmap}
+fiatmap ${wdir}${filtered_cat} ${r_inner} ${r_outer} ${wdir}${fmap}
