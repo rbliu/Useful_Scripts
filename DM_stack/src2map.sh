@@ -6,6 +6,7 @@
 # 1. Make sure you have print_fiat_header.py and readout_src_2.0.py under the same directory with this script.
 # 2. It also needs numpy, astropy and pyfits -- they are included in DMstack.
 # 3. Make sure fiat tools (eg. fiatfilter, fiatmap) are already installed.
+#    (In our lab, you need to add "export PATH=$PATH:/usr/dist/dls/bin" to your ~/.bashrc file.)
 # 4. Modify wdir and src_fits by yourself, as well as the parameters in fiatfilter& fiatmap.
 ########################################################################
 
