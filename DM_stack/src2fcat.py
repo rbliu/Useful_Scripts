@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 #!/usr/bin/env python
 ## last modified by Robert Liu at 6/20/2018
+## This script is used to extract header and catalog from a (DM stack output) src fits file, and save it as the fiat style.
+
 import re
 import sys
 import numpy as np
