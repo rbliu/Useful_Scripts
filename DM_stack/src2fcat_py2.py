@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 #!/usr/bin/env python
-## last modified by Robert Liu at 6/20/2018
+## last modified by Robert Liu at 6/20/2019
 ## This script is used to extract header and catalog from a (DM stack output) src fits file, and save it as the fiat style.
+## This script is compatible with DM v13.0 (Python2) and obs_file. If you are using a later version of DM or Python3, please use the other script.
 
 import re
 import sys
 import numpy as np
-import pyfits
 from astropy.io import fits
 
 if len(sys.argv) != 2:
-    print >>sys.stderr, "Usage: python src2fcat.py {source_fits_file} > {fiat_file}"
+    print >>sys.stderr, "Usage: python src2fcat_py2.py {source_fits_file} > {fiat_file}"
     exit(1);
 srcfits = sys.argv[1]
 
@@ -18,7 +18,7 @@ srcfits = sys.argv[1]
 if srcfits=='':
 	srcfits = 'src.fits'
 
-data_table, header_table = pyfits.getdata('%s' %(srcfits), 1, header=True)
+data_table, header_table = fits.getdata('%s' %(srcfits), 1, header=True)
 
 print '# fiat 1.0'
 
