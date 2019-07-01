@@ -9,7 +9,7 @@ import numpy as np
 from astropy.io import fits
 
 if len(sys.argv) != 2:
-    print("Usage: python src2fcat.py {source_fits_file} > {fiat_file}", file=sys.stderr)
+    print("Usage: python src2fcat_py3.py {source_fits_file} > {fiat_file}", file=sys.stderr)
     exit(1);
 srcfits = sys.argv[1]
 
@@ -22,8 +22,8 @@ data_table, header_table = fits.getdata('%s' %(srcfits), 1, header=True)
 print('# fiat 1.0')
 
 # Print all the flag names
-for i in range(len(header_table['TFLAG*'])):
-    print('# TTYPE' + str(i+1) + ' = ' + header_table['TFLAG*'][i])
+# for i in range(len(header_table['TFLAG*'])):
+#     print('# TTYPE' + str(i+1) + ' = ' + header_table['TFLAG*'][i])
 
 # Print all the column names except the 1st column "flags"
 for i in range(len(header_table['TTYPE*'])-1):
